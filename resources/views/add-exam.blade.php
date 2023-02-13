@@ -41,6 +41,8 @@
                     <form action="{{route('exam.store')}}" method="post">
                         @csrf
                         @method('post')
+                        {{-- the following line is not seen, it is only to send testName to the back --}}
+                        <input type="text" name="testName" value="{{$examDetails[0]}}" hidden>
                         <div class="container w-full justify-center">
                             <div class="grid gap-2 lg:grid-cols-{{$colNum}} md:grid-cols-4 sm:grid-cols-1">
                                 @for ($j = 1; $j <= $colNum; $j++)
@@ -48,10 +50,10 @@
                                     @for ($i = $qNo; $i <= $rowNum; $i++)
                                         <div class="justify-center align-middle mx-3">
                                             <label class="mr-2">{{$i < 10 ? "*".$i : $i}}</label>
-                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}" value="A">
-                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}">
-                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}">
-                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}">
+                                            <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="A" required>
+                                            <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="B" required>
+                                            <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="C" required>
+                                            <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="D" required>
                                         </div>
                                     @endfor
                                     <hr class="h-5">
