@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AnswerKeyController;
 use App\Http\Controllers\ProfileController;
+use App\Models\AnswerKey;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +24,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/add-exam', function () {
-    return view('add-exam');
-})->middleware(['auth', 'verified'])->name('add-exam');
+Route::get('/add-qcount', function () {
+    return view('add-qcount');
+})->middleware(['auth', 'verified'])->name('add-qcount');
+
+Route::post('/add-exam', [AnswerKeyController::class, 'questionNumber'])->middleware(['auth', 'verified'])->name('add-exam');
+
+Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verified'])->only(['store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

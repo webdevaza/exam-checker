@@ -12,6 +12,24 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            input[type="radio"] {
+              position: relative;
+            }
+            input[type="radio"]:checked::before {
+              content: "";
+              display: block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: black;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+            </style>
+            
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
