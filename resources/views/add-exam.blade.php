@@ -1,52 +1,72 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-center">
-            <a id="addButton" href="/add-exam" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">
-                ADD EXAM
-            </a>
-            <a id="showStudents" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">
-                Exams
-            </a>
-            <a id="showStudents" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">
-                Results
-            </a>
-            <a id="showStudents" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">
-                Students
-            </a>
-        </div>
+        @include('header')
     </x-slot>
 
     <div class="py-12">
         <div class="flex justify-center mx-auto">
-                <div id="countDiv">
-                    <div class="m-2 p-2">
-                        <label>Exam name:   <input class="rounded h-8 w-30" type="text" name="exam-name" value="{{old('exam-name')}}" autocomplete="off" ></label>
-                    </div>
-                    <div class="m-2 p-2">
-                        <label>Number of questions:   <input id="qCount" class="rounded h-8 w-10" type="number" name="count" value="{{old('count')}}" autocomplete="off"></label>
-                    </div>
-                    <div class="flex justify-center">
-                        <button id="count-add" class="bg-cyan-200 rounded py-1 px-2 border border-solid border-teal-600">Add</button>
-                    </div>
-                </div>
-                <div id="examDiv" hidden>
+                <div id="examDiv">
                     <div class="m-2 p-2 text-center">
-                        <label>Exam name</label>
+                        <label>{{$examDetails[0]}}</label>
                     </div>
-                    <div class="grid gap-2 sm:grid-cols-5 grid-cols-1">
-                        @for ($i = 1; $i <= 30; $i++)
-                            <div class="justify-center align-middle mx-3">
-                                <label class="mr-2">{{$i}}</label>
-                                <input class=" m-1" type="radio" name="q-{{$i}}">
-                                <input class=" m-1" type="radio" name="q-{{$i}}">
-                                <input class=" m-1" type="radio" name="q-{{$i}}">
-                                <input class=" m-1" type="radio" name="q-{{$i}}">
+                    @php
+                        $qNum = $examDetails[1];
+                        $qNo = 1;
+                        $interval = 10;
+                        $colNum = 1;
+                        
+                        if ($qNum == 10) {
+                            $interval = 10;
+                            $colNum = 1;
+                        }
+                        elseif ($qNum == 15) {
+                            $interval = 15;
+                            $colNum = 1;
+                        }
+                        elseif ($qNum == 20) {
+                            $interval = 10;
+                            $colNum = 2;
+                        }
+                        elseif ($qNum == 25) {
+                            $interval = 5;
+                            $colNum = 5;
+                        }
+                        elseif ($qNum == 30) {
+                            $interval = 6;
+                            $colNum = 5;
+                        }
+
+                        $rowNum = $interval;
+                    @endphp
+                    <form action="{{route('exam.store')}}" method="post">
+                        @csrf
+                        @method('post')
+                        <div class="container w-full justify-center">
+                            <div class="grid gap-2 lg:grid-cols-{{$colNum}} md:grid-cols-4 sm:grid-cols-1">
+                                @for ($j = 1; $j <= $colNum; $j++)
+                                <div class="flex flex-col">
+                                    @for ($i = $qNo; $i <= $rowNum; $i++)
+                                        <div class="justify-center align-middle mx-3">
+                                            <label class="mr-2">{{$i < 10 ? "*".$i : $i}}</label>
+                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}" value="A">
+                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}">
+                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}">
+                                            <input class=" m-1 checked:text-black" type="radio" name="q-{{$i}}">
+                                        </div>
+                                    @endfor
+                                    <hr class="h-5">
+                                    @php
+                                        $qNo += $interval;
+                                        $rowNum = $qNo + $interval-1;
+                                    @endphp
+                                </div>
+                                @endfor
                             </div>
-                        @endfor
-                    </div>
-                    <div class="flex justify-center m-3">
-                        <button id="exam-add" class="bg-cyan-200 rounded py-1 px-2 border border-solid border-teal-600">Submit</button>
-                    </div>
+                            <div class="flex justify-center m-3">
+                                <button id="exam-add" class="bg-cyan-200 rounded py-1 px-2 border border-solid border-teal-600">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
         </div>
     </div>
