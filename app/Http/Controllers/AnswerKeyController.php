@@ -35,10 +35,23 @@ class AnswerKeyController extends Controller
         return response()->redirectToRoute('exam.index')->with('success', $name.' was successfully stored');
     }
 
-    public function edit(AnswerKey $test) {
+    public function edit(AnswerKey $exam) {
+        $keys = str_split($exam->key);
+        return response()->view('edit-exam', ['keys' => $keys, 'testName' => $exam->testName, 'id' => $exam->id]);
+    }
+
+    public function update (Request $request, AnswerKey $exam) {
+        $key = "";
+        $a = 1;
+        while ($request->$a) {
+            $key .= strtoupper($request->$a);
+            $a++;
+        }
         
-        
-        $keys = str_split($test->key);
-        return response()->view('edit-exam', ['keys' => $keys]);
+        $exam->update([
+            'key' => $key
+        ]);
+
+        return response()->redirectToRoute('exam.index')->with('success', $exam->testName.' was successfully edited.');
     }
 }

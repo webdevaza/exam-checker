@@ -30,7 +30,7 @@ Route::get('/add-qcount', function () {
 
 Route::post('/add-exam', [AnswerKeyController::class, 'addExam'])->middleware(['auth', 'verified'])->name('add-exam');
 
-Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verified'])->only(['store', 'index', 'edit']);
+Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verified'])->only(['store', 'index', 'edit', 'update']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
