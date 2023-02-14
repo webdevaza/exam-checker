@@ -46,10 +46,14 @@
                         <div class="container w-full justify-center">
                             <div class="grid gap-2 lg:grid-cols-{{$colNum}} md:grid-cols-4 sm:grid-cols-1">
                                 @for ($j = 1; $j <= $colNum; $j++)
-                                <div class="flex flex-col">
+                                <div class="flex flex-col justify-center text-center">
                                     @for ($i = $qNo; $i <= $rowNum; $i++)
-                                        <div class="justify-center align-middle mx-3">
-                                            <label class="mr-2">{{$i < 10 ? "*".$i : $i}}</label>
+                                        <div class="mx-3">
+                                            @if ($i < 10)
+                                            <label class="mr-2">&nbsp&nbsp{{$i}}</label> 
+                                            @else
+                                            <label class="mr-2">{{$i}}</label>
+                                            @endif
                                             <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="A" required>
                                             <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="B" required>
                                             <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="C" required>

@@ -28,9 +28,9 @@ Route::get('/add-qcount', function () {
     return view('add-qcount');
 })->middleware(['auth', 'verified'])->name('add-qcount');
 
-Route::post('/add-exam', [AnswerKeyController::class, 'questionNumber'])->middleware(['auth', 'verified'])->name('add-exam');
+Route::post('/add-exam', [AnswerKeyController::class, 'addExam'])->middleware(['auth', 'verified'])->name('add-exam');
 
-Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verified'])->only(['store']);
+Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verified'])->only(['store', 'index', 'edit']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

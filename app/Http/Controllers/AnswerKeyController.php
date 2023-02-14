@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 
 class AnswerKeyController extends Controller
 {
-    public function questionNumber (Request $request) {
+    public function index() {
+        $tests = AnswerKey::all();
+
+        return response()->view('exams-list', ['tests' => $tests]);
+    }
+
+    public function addExam (Request $request) {
         $examDetails = [$request->examName, $request->qCount];
         $qCount = $request->qCount;
         return view('add-exam',compact('examDetails'));
@@ -26,6 +32,13 @@ class AnswerKeyController extends Controller
             'key' => $key
         ]);
 
-        return redirect()->route('add-qcount')->with('success', $name.' was successfully stored');
+        return response()->redirectToRoute('exam.index')->with('success', $name.' was successfully stored');
+    }
+
+    public function edit(AnswerKey $test) {
+        
+        
+        $keys = str_split($test->key);
+        return response()->view('edit-exam', ['keys' => $keys]);
     }
 }
