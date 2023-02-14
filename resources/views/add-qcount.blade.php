@@ -2,7 +2,6 @@
     <x-slot name="header">
         @include('header')
     </x-slot>
-    @include('flash.flash-message')
     <div class="py-12">
         <div class="flex justify-center mx-auto">
                 <div id="countDiv">
