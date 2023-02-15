@@ -9,7 +9,7 @@
                     @csrf
                     @method('POST')
                         <div class="m-2 p-2">
-                            <label>Exam name:   <input class="rounded h-8 w-30" type="text" name="examName" value="{{old('examName')}}" autocomplete="off" required></label>
+                            <label>Exam name:   <input class="rounded h-8 w-30" type="text" name="examName" value="{{old('examName')}}" autocomplete="off" placeholder="Type the test's name" required></label>
                         </div>
                         <div class="m-2 p-2">
                             <label>Number of questions:   
