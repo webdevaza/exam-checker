@@ -32,7 +32,7 @@ class AnswerKeyController extends Controller
             'key' => $key
         ]);
 
-        return response()->redirectToRoute('exam.index')->with('success', $name.' was successfully stored');
+        return response()->redirectToRoute('exam.index')->with('saved', $name.' was successfully saved');
     }
 
     public function edit(AnswerKey $exam) {
@@ -52,6 +52,11 @@ class AnswerKeyController extends Controller
             'key' => $key
         ]);
 
-        return response()->redirectToRoute('exam.index')->with('success', $exam->testName.' was successfully edited.');
+        return response()->redirectToRoute('exam.index')->with('edited', $exam->testName.' was successfully edited.');
+    }
+
+    public function destroy(AnswerKey $exam) {
+        $exam->delete();
+        return response()->redirectToRoute('exam.index')->with('deleted', $exam->testName.' was successfully deleted.');
     }
 }
