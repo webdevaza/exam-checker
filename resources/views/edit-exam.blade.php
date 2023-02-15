@@ -12,7 +12,7 @@
                 @csrf
                 {{ method_field('PUT') }}
                 <div class="text-center text-blue-600 my-2">
-                    <input class="mx-auto text-center" name="testName" value="{{$testName}}" title="You can edit this"/>
+                    <input class="mx-auto text-center" name="testName" value="{{$testName}}" title="You can edit this" onclick="this.select();"/>
                 </div>
                 <ol>
                     <div class="grid gap-2 w-full lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-1">
@@ -24,7 +24,17 @@
                             <div class=" w-full rounded bg-white" title="You can edit this">
                                 <div class="flex mx-2" >
                                     <label class="p-2 underline text-blue-600">#{{$questionNumber}}</label>
-                                    <input class="w-12 bg-transparent border-0" type="text" name="{{$questionNumber}}" value="{{$key}}" required>
+                                    <input 
+                                            class="w-12 bg-transparent border-0" 
+                                            type="text" 
+                                            name="{{$questionNumber}}" 
+                                            value="{{$key}}" 
+                                            maxlength="1" 
+                                            required 
+                                            onclick="this.select();"
+                                            pattern="[A-Da-d]"
+                                            title="Only a,b,c,d"
+                                    />
                                 </div>
                             </div>
                         </li>
@@ -38,16 +48,17 @@
                     <div class="text-center my-2">
                         <button class="rounded bg-blue-500 text-white mx-2 p-1" title="Click to save">Update</button>
                     </div>
-                </form>
-                    <div class="text-center my-2">
-                            <form method="POST" action="{{route('exam.destroy', $id)}}" class="" onsubmit="return confirm('Do you really want delete the test: {{$testName}}?')">
-                                @csrf
-                                @method('DELETE')
-                            <button class="rounded bg-red-500 text-white mx-2 p-1" title="Click to delete">
-                                Delete</button>
-                        </form>
-                    </div>
                 </div>
+            </form>
+            <div class="text-center my-2">
+                <form method="POST" action="{{route('exam.destroy', $id)}}" class="" onsubmit="return confirm('Do you really want delete the test: {{$testName}}?')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="rounded bg-red-500 text-white mx-2 p-1" title="Click to delete">
+                        Delete
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </x-app-layout>
