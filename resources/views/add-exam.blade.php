@@ -15,28 +15,21 @@
                         $interval = 10;
                         $colNum = 1;
                         
-                        if ($qNum == 10) {
-                            $interval = 10;
-                            $colNum = 1;
-                        }
-                        elseif ($qNum == 15) {
+                        if ($qNum <= 15) {
                             $interval = 15;
                             $colNum = 1;
                         }
-                        elseif ($qNum == 20) {
-                            $interval = 10;
+                        elseif ($qNum <= 20) {
                             $colNum = 2;
                         }
-                        elseif ($qNum == 25) {
-                            $interval = 5;
-                            $colNum = 5;
+                        elseif ($qNum <= 30) {
+                            $colNum = 3;
                         }
-                        elseif ($qNum == 30) {
-                            $interval = 6;
-                            $colNum = 5;
+                        else {
+                            $colNum = ceil($qNum/10);
                         }
 
-                        $rowNum = $interval;
+                        $rowNum = $qNum < $interval ? $qNum : $interval;
                     @endphp
                     <form action="{{route('exam.store')}}" method="post">
                         @csrf
@@ -46,7 +39,7 @@
                         <div class="container w-full justify-center">
                             <div class="grid gap-2 lg:grid-cols-{{$colNum}} md:grid-cols-4 sm:grid-cols-1">
                                 @for ($j = 1; $j <= $colNum; $j++)
-                                <div class="flex flex-col justify-center text-center">
+                                <div class="flex flex-col justify-center text-center items-start">
                                     @for ($i = $qNo; $i <= $rowNum; $i++)
                                         <div class="mx-3">
                                             @if ($i < 10)
@@ -59,11 +52,14 @@
                                             <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="C" required>
                                             <input class=" m-1 checked:text-black" type="radio" name="{{$i}}" value="D" required>
                                         </div>
+                                        @php
+                                            $qNo = $i;
+                                        @endphp
                                     @endfor
                                     <hr class="h-5">
                                     @php
-                                        $qNo += $interval;
-                                        $rowNum = $qNo + $interval-1;
+                                        $qNo += 1;
+                                        $rowNum = ($qNum - $qNo) > 10 ? ($qNo + $interval-1) : $qNum;
                                     @endphp
                                 </div>
                                 @endfor
