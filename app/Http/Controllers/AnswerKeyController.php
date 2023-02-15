@@ -49,7 +49,8 @@ class AnswerKeyController extends Controller
         }
         
         $exam->update([
-            'key' => $key
+            'key' => $key,
+            'testName' => $request->testName
         ]);
 
         return response()->redirectToRoute('exam.index')->with('edited', $exam->testName.' was successfully edited.');

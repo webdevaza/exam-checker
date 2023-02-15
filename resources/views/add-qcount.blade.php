@@ -13,13 +13,14 @@
                         </div>
                         <div class="m-2 p-2">
                             <label>Number of questions:   
-                                <select id="qCount" class="rounded h-10 w-20" type="number" name="qCount" value="{{old('qCount')}}" required>
+                                <input id="qCount" class="rounded h-10 w-20" type="number" max="100" name="qCount" value="{{old('qCount')}}" required>
+                                {{-- <select id="qCount" class="rounded h-10 w-20" type="number" name="qCount" value="{{old('qCount')}}" required>
                                     <option value="10">10</option>
                                     <option value="15">15</option>
                                     <option value="20">20</option>
                                     <option value="25">25</option>
                                     <option value="30">30</option>
-                                </select>
+                                </select> --}}
                             </label>
                         </div>
                         <div class="flex justify-center">

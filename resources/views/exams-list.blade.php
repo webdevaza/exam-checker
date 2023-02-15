@@ -2,7 +2,9 @@
     <x-slot name="header">
         @include('header')
     </x-slot>
-    @include('flash.flash-message')
+    <div class="h-10 m-1 p-1">
+        @include('flash.flash-message')
+    </div>
     <div class="py-12">
         <div class="grid grid-flow-col justify-center ml-5 mx-auto">
             <ol>
