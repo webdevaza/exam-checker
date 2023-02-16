@@ -39,7 +39,13 @@
                         <div class="container w-full justify-center">
                             <div class="grid gap-2 lg:grid-cols-{{$colNum}} md:grid-cols-4 sm:grid-cols-1">
                                 @for ($j = 1; $j <= $colNum; $j++)
-                                <div class="flex flex-col justify-center text-center items-start">
+                                <div class="flex flex-col justify-start text-center">
+                                    <div class="flex flex-wrap justify-center ml-7">
+                                        <label class="mx-2">A</label>
+                                        <label class="mx-2">B</label>
+                                        <label class="mx-2">C</label>
+                                        <label class="mx-2">D</label>
+                                    </div>
                                     @for ($i = $qNo; $i <= $rowNum; $i++)
                                         <div class="mx-3">
                                             @if ($i < 10)
