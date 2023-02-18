@@ -36,8 +36,9 @@
                         @method('post')
                         {{-- the following line is not seen, it is only to send testName to the back --}}
                         <input type="text" name="testName" value="{{$examDetails[0]}}" hidden>
+                        {{-- end of not seen --}}
                         <div class="container w-full justify-center">
-                            <div class="grid gap-2 lg:grid-cols-{{$colNum}} md:grid-cols-4 sm:grid-cols-1">
+                            <div class="grid gap-2 xl:grid-cols-{{$colNum}} lg:grid-cols-{{$qNum <= 50 ? $colNum : 4}} md:grid-cols-{{$qNum <= 50 ? $colNum : 3}} sm:grid-cols-{{$qNum <= 50 ? $colNum : 2}} xs:grid-cols-1">
                                 @for ($j = 1; $j <= $colNum; $j++)
                                 <div class="flex flex-col justify-start text-center">
                                     <div class="flex flex-wrap justify-center ml-7">
