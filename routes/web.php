@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerKeyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResultController;
 use App\Models\AnswerKey;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::get('/add-qcount', function () {
 Route::post('/add-exam', [AnswerKeyController::class, 'addExam'])->middleware(['auth', 'verified'])->name('add-exam');
 
 Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verified'])->only(['store', 'index', 'edit', 'update', 'destroy']);
+
+Route::resource('take-exam', ResultController::class)->only(['create']);
+
+Route::get('/choose-exam', [ResultController::class, 'chooseExam'])->name('choose-exam');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
