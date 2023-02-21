@@ -72,3 +72,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Controllers (AnswerKeyController, ResultController)
 - Migrations (create_answer_key, create_result)
 - Routes (Route::resource('answerkeys'), Route::resource('results'))
+
+NEED TO: make exam taking without auth requirement; fix answersheet tailwind; add result counting; add result show page;
