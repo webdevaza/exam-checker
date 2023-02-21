@@ -28,11 +28,11 @@
 
                         $rowNum = $qNum < $interval ? $qNum : $interval;
                     @endphp
-                    <form action="{{route('exam.store')}}" method="post">
+                    <form action="{{route('take-exam.update', $result->id)}}" method="post">
                         @csrf
-                        @method('post')
-                        {{-- the following line is not seen, it is only to send userName to the back --}}
-                        <input type="text" name="userName" value="{{$result->userName}}" hidden>
+                        @method('PUT')
+                        {{-- the following line is not seen, it is only to send testName to the back --}}
+                        <input type="text" name="testName" value="{{$result->testName}}" hidden>
                         {{-- end of not seen --}}
                         <div class="container w-full justify-center">
                             <div class="grid gap-2 xl:grid-cols-{{$colNum}} lg:grid-cols-{{$qNum <= 50 ? $colNum : 4}} md:grid-cols-{{$qNum <= 50 ? $colNum : 3}} sm:grid-cols-{{$qNum <= 50 ? $colNum : 2}} xs:grid-cols-1">

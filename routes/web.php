@@ -33,7 +33,7 @@ Route::post('/add-exam', [AnswerKeyController::class, 'addExam'])->middleware(['
 
 Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verified'])->only(['store', 'index', 'edit', 'update', 'destroy']);
 
-Route::resource('take-exam', ResultController::class)->only(['create']);
+Route::resource('take-exam', ResultController::class)->only(['create','update']);
 
 Route::get('/choose-exam', [ResultController::class, 'chooseExam'])->name('choose-exam');
 

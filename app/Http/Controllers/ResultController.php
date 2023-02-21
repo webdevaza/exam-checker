@@ -65,9 +65,18 @@ class ResultController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Result $result): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $answers = "";
+        $a = 1;
+        while ($request->$a) {
+            $answers .= $request->$a;
+            $a++;
+        }
+        $result = Result::find($id);
+        $result->answer = $answers;
+        $result->save();
+        return response()->redirectToRoute('choose-exam');
     }
 
     /**
