@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="py-12">
         <div class="flex justify-center mx-auto">
                 <div id="countDiv">
@@ -28,4 +28,4 @@
                 </div>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>
