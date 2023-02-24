@@ -34,8 +34,9 @@ class ResultController extends Controller
         ]);
         $answerKey = AnswerKey::where('testName',$request->testName)->get();
         $count = strlen($answerKey[0]->key);
+        $keyId = $answerKey[0]->id;
         $result = Result::create($validated);
-        return response()->view('answer-sheet',['result'=>$result,'count' => $count]);
+        return response()->view('answer-sheet',['result'=>$result,'count' => $count,'keyId'=>$keyId]);
     }
 
     /**
@@ -65,18 +66,46 @@ class ResultController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
+        // Gathering answers into a string
         $answers = "";
         $a = 1;
         while ($request->$a) {
             $answers .= $request->$a;
             $a++;
         }
+
+        // Finding the necessary AnswerKey
+        $answerKey = AnswerKey::where('id',$request->keyId)->get();
+
+        $count = strlen($answerKey[0]->key);
+
+        // Comparing keys with answers
+        $keysArr = str_split($answerKey[0]->key);
+        $answersArr = str_split($answers);
+
+        $correctAnswersCount = 0;
+
+        for ($i=0; $i < count($keysArr); $i++) { 
+            if ($keysArr[$i] == $answersArr[$i]) {
+                $correctAnswersCount++;
+            };
+        };
+
+        // Saving to Result
         $result = Result::find($id);
+
         $result->answer = $answers;
+        $result->result = $correctAnswersCount;
+        
         $result->save();
-        return response()->redirectToRoute('choose-exam');
+        
+        // Returning results view
+        return response()->view('result',['correctCount' => $correctAnswersCount,
+                                        'allCount' => $count,
+                                        'testName' => $request->testName,
+                                        'fullName' => $result->fullName]);
     }
 
     /**
