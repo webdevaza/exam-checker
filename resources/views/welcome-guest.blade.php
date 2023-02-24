@@ -26,20 +26,7 @@
                 <div class="flex justify-center">
                     <x-application-logo class="mx-auto block h-9 w-auto fill-current text-gray-800" />
                 </div>
-                <h1>Test yourself with us!</h1>
-                @if (Route::has('login'))
-                <div class="text-center px-6 py-4">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm bg-lime-400 m-2 p-2 rounded text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm bg-lime-400 m-2 p-2 rounded text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        {{-- @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm bg-lime-400 m-2 p-2 rounded text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif --}}
-                    @endauth
-                </div>
-            @endif
+                <a href="{{route('choose-exam')}}"><h1>Test yourself with us!</h1></a>
             </div>
         </div>
         <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
