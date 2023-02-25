@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Result;
 use App\Models\AnswerKey;
 use Illuminate\Http\Request;
 
@@ -59,5 +60,10 @@ class AnswerKeyController extends Controller
     public function destroy(AnswerKey $exam) {
         $exam->delete();
         return response()->redirectToRoute('exam.index')->with('deleted', $exam->testName.' was successfully deleted.');
+    }
+
+    public function showResults() {
+        $results = Result::all();
+        return view('all-results', ['results' => $results]);
     }
 }
