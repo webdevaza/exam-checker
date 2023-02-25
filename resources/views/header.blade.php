@@ -5,7 +5,7 @@
     <a id="showStudents" href="{{route('exam.index')}}" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">
         Exams
     </a>
-    <a id="showStudents" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">
+    <a id="showStudents" href="{{route('all-results')}}" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">
         Results
     </a>
     <a id="showStudents" class="basis-1 font-semibold cursor-pointer underline text-gray-800 leading-tight my-1 sm:mx-8 mx-auto">

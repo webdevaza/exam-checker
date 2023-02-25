@@ -40,6 +40,7 @@ Route::resource('exam', AnswerKeyController::class)->middleware(['auth', 'verifi
 Route::resource('take-exam', ResultController::class)->only(['create','update']);
 
 Route::get('/choose-exam', [ResultController::class, 'chooseExam'])->name('choose-exam');
+Route::get('/all-results', [AnswerKeyController::class, 'showResults'])->middleware(['auth', 'verified'])->name('all-results');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
