@@ -42,7 +42,7 @@ class ResultController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         //
     }
@@ -50,7 +50,7 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Result $result): Response
+    public function show(Result $result)
     {
         //
     }
@@ -58,7 +58,7 @@ class ResultController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Result $result): Response
+    public function edit(Result $result)
     {
         //
     }
@@ -111,7 +111,7 @@ class ResultController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Result $result): RedirectResponse
+    public function destroy(Result $result)
     {
         //
     }
