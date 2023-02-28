@@ -4,7 +4,7 @@
         <div class="flex justify-center mx-auto">
                 <div id="examDiv">
                     <div class="m-2 p-2 text-center">
-                        <label>{{$result->testName}}</label>
+                        <label>{{$testTaker->testName}}</label>
                     </div>
                     @php
                         $qNum = $count;
@@ -28,11 +28,11 @@
 
                         $rowNum = $qNum < $interval ? $qNum : $interval;
                     @endphp
-                    <form action="{{route('take-exam.update', $result->id)}}" method="post">
+                    <form action="{{route('take-exam.update', $testTaker->id)}}" method="post">
                         @csrf
                         @method('PUT')
                         {{-- the following line are not seen, it is only to send testName and answerKeyId to the back --}}
-                        <input type="text" name="testName" value="{{$result->testName}}" hidden>
+                        <input type="text" name="testName" value="{{$testTaker->testName}}" hidden>
                         <input type="text" name="keyId" value="{{$keyId}}" hidden>
                         {{-- end of not seen --}}
                         <div class="container w-full justify-center">

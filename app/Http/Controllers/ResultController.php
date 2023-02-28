@@ -28,15 +28,15 @@ class ResultController extends Controller
     public function create(Request $request): Response
     {
         $validated = $request->validate([
-            'userName' => 'required|unique:results,userName',
+            'userName' => 'required',
             'fullName' => 'required',
             'testName' => 'required'
         ]);
         $answerKey = AnswerKey::where('testName',$request->testName)->get();
         $count = strlen($answerKey[0]->key);
         $keyId = $answerKey[0]->id;
-        $result = Result::create($validated);
-        return response()->view('answer-sheet',['result'=>$result,'count' => $count,'keyId'=>$keyId]);
+        $testTaker = Result::create($validated);
+        return response()->view('answer-sheet',['testTaker'=>$testTaker,'count' => $count,'keyId'=>$keyId]);
     }
 
     /**
