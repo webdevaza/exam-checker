@@ -73,4 +73,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Migrations (create_answer_key, create_result)
 - Routes (Route::resource('answerkeys'), Route::resource('results'))
 
-NEED TO: fix answersheet tailwind; cancel exam takers unique
+NEED TO: fix answersheet tailwind;
