@@ -87,8 +87,11 @@ class ResultController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Result $result)
+    public function destroy($id)
     {
-        //
+        $student = Result::find($id);
+        $student->delete();
+        return response()->redirectToRoute('all-results')->with('deleted', $student->fullName.' was successfully deleted.');
+    
     }
 }
