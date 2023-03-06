@@ -38,7 +38,7 @@
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="flex bg-white p-5 border border-spacing-1">
                 {{ $slot }}
             </div>
         </div>

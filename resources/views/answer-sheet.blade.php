@@ -1,8 +1,8 @@
 <x-guest-layout>
 
     <div class="py-12">
-        <div class="flex justify-center mx-auto">
-                <div id="examDiv">
+        <div class="flex justify-center mx-auto w-full">
+                <div class="container" id="examDiv">
                     <div class="m-2 p-2 text-center">
                         <label>{{$testTaker->testName}}</label>
                     </div>
